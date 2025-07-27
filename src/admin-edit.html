@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Monitoring System - Edit Bus Details</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Bus Details</h1>
+        <form id="editBusForm" class="admin-login-form" aria-label="Edit Bus Details Form">
+            <label for="busName">Bus Name:</label>
+            <input type="text" id="busName" name="busName" required />
+
+            <label for="busNumber">Bus Number:</label>
+            <input type="text" id="busNumber" name="busNumber" required />
+
+            <label for="routeStart">Route Start:</label>
+            <input type="text" id="routeStart" name="routeStart" required />
+
+            <label for="routeVia">Route Via:</label>
+            <input type="text" id="routeVia" name="routeVia" required />
+
+            <label for="routeStops">Route Stops:</label>
+            <input type="text" id="routeStops" name="routeStops" required />
+
+            <div class="form-buttons">
+                <button type="submit" class="btn primary-btn">Save</button>
+                <button type="button" id="cancelBtn" class="btn secondary-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="admin-edit.js"></script>
+</body>
+</html>

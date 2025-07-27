@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Monitoring System - Admin Routes</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Bus Routes Management</h1>
+        <table id="routesTable" class="routes-table" aria-describedby="routesTableDesc">
+            <caption id="routesTableDesc">List of bus routes with details</caption>
+            <thead>
+                <tr>
+                    <th>Bus Name</th>
+                    <th>Bus Number</th>
+                    <th>Route Start</th>
+                    <th>Route Via</th>
+                    <th>Route Stops</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Routes will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div class="route-buttons">
+            <button id="logoutBtn" class="btn secondary-btn">Logout</button>
+        </div>
+    </div>
+
+    <script src="admin-routes.js"></script>
+</body>
+</html>

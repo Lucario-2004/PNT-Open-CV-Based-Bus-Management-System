@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Monitoring System - Home</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+    <header class="top-header">
+        <button id="backBtn" class="btn back-btn" aria-label="Go Back">← Back</button>
+        <h1 class="page-title">Bus Monitoring System</h1>
+        <button id="adminLoginBtn" class="btn admin-login-btn" aria-label="Administrator Login">Administrator Login</button>
+    </header>
+
+<main class="main-content">
+    <div class="input-container" style="margin-top: 100px; display: flex; flex-direction: column; align-items: center;">
+        <input
+            type="text"
+            id="boardingLocation"
+            placeholder="Enter your boarding location"
+            aria-label="Enter your boarding location"
+            style="background: #fff3e0; border: 2px solid #ffb74d; color: #bf360c; width: 300px; height: 40px; font-size: 1.2rem; padding: 0 10px; border-radius: 10px;"
+        />
+        <button id="enterBtn" class="btn enter-btn" style="background: #ffb74d; color: #4e342e; margin-top: 20px; width: 150px; height: 40px; font-size: 1.2rem;">Enter</button>
+    </div>
+</main>
+
+    <script>
+        document.getElementById('adminLoginBtn').addEventListener('click', () => {
+            window.location.href = 'admin-login.html';
+        });
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.history.back();
+        });
+        document.getElementById('enterBtn').addEventListener('click', () => {
+            const location = document.getElementById('boardingLocation').value.trim();
+            if (!location) {
+                alert('Please enter your boarding location.');
+                return;
+            }
+            // Store location in sessionStorage for user page usage if needed
+            sessionStorage.setItem('boardingLocation', location);
+            window.location.href = 'user.html';
+        });
+    </script>
+</body>
+</html>
