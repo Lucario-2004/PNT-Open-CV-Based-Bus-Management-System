@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Monitoring System - Student Notification</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #bf360c;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #bf360c;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffb74d;
+            font-size: 1.1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #ff6f00;
+            box-shadow: 0 0 8px #ff6f00;
+        }
+        button {
+            width: 100%;
+            padding: 15px 0;
+            background: #ffb74d;
+            color: #4e342e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255,105,135,0.6);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            background: #ff6f00;
+            box-shadow: 0 8px 30px rgba(255,74,110,0.8);
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: 600;
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Notification Details</h1>
+        <form id="studentForm" novalidate>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+            
+            <label for="regNumber">Registration Number:</label>
+            <input type="text" id="regNumber" name="regNumber" placeholder="Enter your registration number" required />
+            
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" placeholder="Enter your department" required />
+            
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required pattern="\\d{10}" title="Enter a valid 10-digit phone number" />
+            
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location" required />
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message" class="message" role="alert" aria-live="polite"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('studentForm');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = form.name.value.trim();
+            const regNumber = form.regNumber.value.trim();
+            const department = form.department.value.trim();
+            const phone = form.phone.value.trim();
+            const email = form.email.value.trim();
+
+            const phonePattern = /^\\d{10}$/;
+            if (!name) {
+                messageDiv.textContent = 'Please enter your full name.';
+                messageDiv.style.color = 'red';
+                form.name.focus();
+                return;
+            }
+            if (!regNumber) {
+                messageDiv.textContent = 'Please enter your registration number.';
+                messageDiv.style.color = 'red';
+                form.regNumber.focus();
+                return;
+            }
+            if (!department) {
+                messageDiv.textContent = 'Please enter your department.';
+                messageDiv.style.color = 'red';
+                form.department.focus();
+                return;
+            }
+            if (!phonePattern.test(phone)) {
+                messageDiv.textContent = 'Please enter a valid 10-digit phone number.';
+                messageDiv.style.color = 'red';
+                form.phone.focus();
+                return;
+            }
+            if (!email) {
+                messageDiv.textContent = 'Please enter a valid email address.';
+                messageDiv.style.color = 'red';
+                form.email.focus();
+                return;
+            }
+
+            const userData = { name, regNumber, department, phone, email };
+            localStorage.setItem('busNotificationStudent', JSON.stringify(userData));
+
+            messageDiv.textContent = 'Thank you! You will be notified with updates.';
+            messageDiv.style.color = 'green';
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>

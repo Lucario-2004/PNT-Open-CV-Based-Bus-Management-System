@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Monitoring System - Notification Category</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 150px auto;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #bf360c;
+        }
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #ffb74d;
+            font-size: 1.2rem;
+            outline: none;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        select:focus {
+            border-color: #ff6f00;
+            box-shadow: 0 0 8px #ff6f00;
+        }
+        button {
+            width: 100%;
+            padding: 15px 0;
+            background: #ffb74d;
+            color: #4e342e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255,105,135,0.6);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            background: #ff6f00;
+            box-shadow: 0 8px 30px rgba(255,74,110,0.8);
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: 600;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Category</h1>
+        <select id="userCategory" aria-label="Select user category">
+            <option value="" disabled selected>Select category</option>
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+            <option value="parent">Parent</option>
+        </select>
+        <button id="proceedBtn">Proceed</button>
+        <div id="message" class="message" role="alert" aria-live="polite"></div>
+    </div>
+
+    <script>
+        const proceedBtn = document.getElementById('proceedBtn');
+        const userCategory = document.getElementById('userCategory');
+        const messageDiv = document.getElementById('message');
+
+        proceedBtn.addEventListener('click', () => {
+            const category = userCategory.value;
+            if (!category) {
+                messageDiv.textContent = 'Please select a category to proceed.';
+                return;
+            }
+            messageDiv.textContent = '';
+            if (category === 'student') {
+                window.location.href = 'notify-student.html';
+            } else if (category === 'faculty') {
+                window.location.href = 'notify-faculty.html';
+            } else if (category === 'parent') {
+                window.location.href = 'notify-parent.html';
+            }
+        });
+    </script>
+</body>
+</html>
